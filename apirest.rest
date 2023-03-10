@@ -1,0 +1,14 @@
+POST "http://localhost:9900/routes/hotels"
+Content-Type: application/json
+
+{
+    "name":"Orange Hotel",
+    "type":"hotel",
+    "city":"Lagos",
+    "address":"zd1234 locatn Nigeria",
+    "distance":"769km",
+    "title":"BEST HOTEL IN Lagos",
+    "desc":"HOTEL DECSCRIPTION",
+    "cheapestPrice":450,
+
+}

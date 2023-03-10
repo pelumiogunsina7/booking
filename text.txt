@@ -1,0 +1,29 @@
+app.use((err, req, res, next) =>{
+    const errStatus = err.status || 500
+    const errMessage = err.message || "something went wrong"
+    const errStatck = err.stack
+    return res.status(errStatus).json({
+        success:false,
+        status: errStatus,
+        message:errMessage,
+        stack:  errStatck
+    })
+})
+
+
+
+
+ (req, res, next) => {
+    const token = req.cookies.access_token 
+    if(!token) return next(CreateError(401, "user not Authenticated"))
+    Jwt.verify(token, process.env.Jwt_secKey, (err, user) =>{
+      if(err) return next(CreateError(403, "invalid token"))
+      req.user = user
+      next()
+    })
+  },(req, res, next) =>{
+    res.send("welcome user, you are logged in")
+})
+router.get("/checkuser/:id", (req, res, next) =>{
+    res.send("hello user, you are logged in and you can delete your account")
+}
